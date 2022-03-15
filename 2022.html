@@ -59,11 +59,7 @@
 		map.addOverlay(marker);
 	});
 	   
-     
-  
-    if(!isSupportCanvas()){
-    	alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
-    }
+      
 	//详细的参数,可以查看heatmap.js的文档 https://github.com/pa7/heatmap.js/blob/master/README.md
 	//参数说明如下:
 	/* visible 热力图是否显示,默认为true
@@ -105,9 +101,15 @@
      	});
         heatmapOverlay.setOptions({"gradient":gradient});
     }
-	//判断浏览区是否支持canvas
-    function isSupportCanvas(){
-        var elem = document.createElement('canvas');
-        return !!(elem.getContext && elem.getContext('2d'));
-    }
+      //获取当前位置
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			map.panTo(new_point);
+			getAddress(new_point);			
+			console.log(BMAP_STATUS_SUCCESS)
+		}else {
+			//alert('failed'+this.getStatus());
+		}
+	}); 
 </script>
