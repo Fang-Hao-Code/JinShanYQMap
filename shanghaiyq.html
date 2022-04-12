@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          crossorigin="anonymous">
+
+
+
+    <title>上海疫情走势</title>
+    <style type="text/css">
+		ul,li{list-style: none;margin:0;padding:0;float:left;}
+		html{height:100%}
+		body{height:100%;margin:0px;padding:0px;font-family:"微软雅黑";}
+		#container{height:100%;width:100%;}
+		#r-result{width:100%;}
+    </style>	
+</head>
+<body>
+	<div id="main" style="height:100%;width:100%;"></div>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.3.1/echarts.min.js"></script>
+ <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+        var option;
+        option = {
+            title: {
+                text: '感染人数'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: ['确诊病例', '无症状感染者']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {}
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ["3\u670818\u65e5","3\u670819\u65e5","3\u670820\u65e5","3\u670821\u65e5","3\u670822\u65e5","3\u670823\u65e5","3\u670824\u65e5","3\u670825\u65e5","3\u670826\u65e5","3\u670827\u65e5","3\u670828\u65e5","3\u670829\u65e5","3\u670830\u65e5","3\u670831\u65e5","4\u67081\u65e5","4\u67082\u65e5","4\u67083\u65e5","4\u67084\u65e5","4\u67085\u65e5","4\u67086\u65e5","4\u67087\u65e5","4\u67088\u65e5","4\u67089\u65e5","4\u670810\u65e5","4\u670811\u65e5"],
+                axisLabel: {
+                    rotate: 40,
+                },
+            },
+            yAxis: {
+				type: 'log',
+            },
+            series: [
+                {
+                    name: '确诊病例',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [8,17,24,31,4,4,29,38,45,50,96,326,355,358,260,438,425,268,311,322,824,1015,1006,914,994]                },
+                {
+                    name: '无症状感染者',
+                    type: 'line',
+                    stack: 'Total',
+                    data: [366,492,734,865,977,979,1580,2231,2631,3450,4381,5656,5298,4144,6051,7788,8581,13086,16766,19660,20398,22609,23937,25173,22348]                },
+            ]
+        };
+        option && myChart.setOption(option);
+    </script>
+</html>
